@@ -2,6 +2,31 @@ import type { SearchFilters, NaturalLanguageSearchResponse } from '@/types/searc
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
+export interface Store {
+  id: string
+  name: string
+  city: string | null
+  state: string | null
+  is_active: boolean
+}
+
+interface StoresResponse {
+  statusCode: number
+  data: Store[]
+  metadata: { pagination: unknown; count: number }
+}
+
+export async function getStores(): Promise<Store[]> {
+  const response = await fetch(`${API_URL}/api/v1/stores?is_active=true`)
+
+  if (!response.ok) {
+    throw new Error(`Failed to load stores: ${response.status}`)
+  }
+
+  const json: StoresResponse = await response.json()
+  return json.data ?? []
+}
+
 export async function searchProducts(
   storeId: string,
   query: string,
