@@ -8,10 +8,10 @@ export default function NotFound() {
         <h1 className="text-6xl font-bold">404</h1>
         <p className="text-xl text-muted-foreground">Page not found</p>
         <p className="text-muted-foreground">
-          WeedFinder pages are accessed via QR codes at dispensaries.
+          The page you're looking for doesn't exist.
         </p>
         <Link to="/" className={buttonVariants({ variant: 'outline' })}>
-          Go Home
+          Browse Stores
         </Link>
       </div>
     </div>
